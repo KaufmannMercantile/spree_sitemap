@@ -35,6 +35,6 @@ module SpreeSitemap::SpreeDefaults
 
   def add_taxon(taxon, options={})
     add(km_nested_taxons_path(taxon.permalink), options.merge(:lastmod => taxon.products.last_updated))
-    #taxon.children.each {|child| add_taxon(child, options) }
+    taxon.children.each {|child| add(km_taxon_tree_path(child.permalink, :parent_permalink => taxon.permalink))}
   end
 end
